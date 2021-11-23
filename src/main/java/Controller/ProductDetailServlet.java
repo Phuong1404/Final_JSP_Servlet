@@ -1,11 +1,11 @@
 package Controller;
 
+import DAO.Implement.InvoiceDAOImpl;
+import DAO.Implement.InvoiceDeailDAOImpl;
 import DAO.Implement.ShoppingCartDAOImpl;
 import DAO.Implement.WatchDAOImpl;
 import DAO.MyUtils;
-import Model.Account;
-import Model.ShoppingCart;
-import Model.Watch;
+import Model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,10 +58,13 @@ public class ProductDetailServlet extends HttpServlet {
         Account loginedUser= MyUtils.getLoginedUser(session);
         String ID=request.getParameter("ID");
         String Quantity=request.getParameter("Quantity");
+        String Type=request.getParameter("Type");
         ShoppingCart Cart =new ShoppingCart();
         ShoppingCartDAOImpl sp=new ShoppingCartDAOImpl();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        if(Type.equals("1"))
+        {
         try {
             Cart=sp.getCart(loginedUser.getUserID(),ID);
             if(Cart.getWatch_ID()==null)
@@ -82,5 +85,23 @@ public class ProductDetailServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        }
+        else {
+            InvoiceDeailDAOImpl Iddao=new InvoiceDeailDAOImpl();
+            Invoice In=new Invoice();
+            InvoiceDAOImpl Idao=new InvoiceDAOImpl();
+            try {
+                Idao.addInvoice(new Invoice(loginedUser.getUserID()));// tạo đơn hàng mới
+                In=Idao.getInvoice(loginedUser.getUserID());//lấy đơn hàng vừa tạo
+                MyUtils.storeinvoice(session,In.getID());// lưu vào section
+                Iddao.addInvoiceDetail(new InvoiceDetail(In.getID(),ID,Integer.parseInt(Quantity)));//thêm sản phẩm vào đơn
+                out.println("1");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

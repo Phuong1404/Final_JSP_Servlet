@@ -5,6 +5,9 @@ public class InvoiceDetail
     private String Invoice_ID;
     private String Watch_ID;
     private int Quantity;
+    private String Name;
+    private String Photo;
+    private int Total;
 
     public InvoiceDetail() {}
 
@@ -13,6 +16,15 @@ public class InvoiceDetail
         this.Invoice_ID = Invoice_ID;
         this.Watch_ID = Watch_ID;
         this.Quantity = Quantity;
+    }
+    public InvoiceDetail( String Invoice_ID, String Watch_ID, int Quantity,String Name,String Photo,int Total)
+    {
+        this.Invoice_ID = Invoice_ID;
+        this.Watch_ID = Watch_ID;
+        this.Quantity = Quantity;
+        this.Name=Name;
+        this.Photo=Photo;
+        this.Total=Total;
     }
 
     public String getInvoice_ID()
@@ -43,5 +55,31 @@ public class InvoiceDetail
     public void setQuantity(int Quantity)
     {
         this.Quantity = Quantity;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public String getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(String Photo) {
+        this.Photo = Photo;
+    }
+
+    public int getTotal()
+    {
+        return Total;
+    }
+
+    public void setTotal(int Total)
+    {
+        this.Total = Total;
     }
 }

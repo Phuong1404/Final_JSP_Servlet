@@ -104,16 +104,16 @@
                             <c:forEach items="${product}" var="item">
                             <tr>
                                 <th scope="row">
-                                    <img src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72"
+                                    <img src="Image/${item.getPhoto()}"
                                          alt="" class="img-fluid" style="width:100px;height:100px;"/>
                                 </th>
                                 <td style="padding-top: 45px;">
                                     <h5>
-                                        <strong>${item.getInvoice_ID()}</strong>
+                                        <strong>${item.getName()}</strong>
                                     </h5>
                                 </td>
                                 <td style="padding-top: 45px;">${item.getQuantity()}</td>
-                                <td style="padding-top: 45px;">${item.getQuantity()}</td>
+                                <td style="padding-top: 45px;">${item.getTotal()}</td>
                             </tr>
                             </c:forEach>
                             </tbody>

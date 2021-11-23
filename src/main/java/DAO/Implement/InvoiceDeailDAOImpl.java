@@ -51,7 +51,7 @@ public class InvoiceDeailDAOImpl implements InvoiceDetailDAO
     @Override
     public List<InvoiceDetail> getList(String Invoice_Id) throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="Select * from InvoiceDetail where Invoice_ID= '"+Invoice_Id+"'";
+        String sql="Select Invoice_ID,PhotosOfWatch.Watch_ID,Quantity,Name,Photos,(Quantity*Price)AS Total from InvoiceDetail,dbo.Watch,dbo.PhotosOfWatch WHERE InvoiceDetail.Watch_ID=ID AND PhotosOfWatch.Watch_ID=ID AND SUBSTRING(Photos,6,1)=1 AND Invoice_ID='"+Invoice_Id+"'";
         List<InvoiceDetail>list = new ArrayList<InvoiceDetail>();
         try
         {
@@ -62,7 +62,10 @@ public class InvoiceDeailDAOImpl implements InvoiceDetailDAO
                 String Invoice_ID=rs.getString("Invoice_ID");
                 String Watch_ID=rs.getString("Watch_ID");
                 int Quantity =rs.getInt("Quantity");
-                list.add(new InvoiceDetail(Invoice_ID,Watch_ID,Quantity));
+                String Name=rs.getString("Name");
+                String Photo=rs.getString("Photos");
+                int Total =rs.getInt("Total");
+                list.add(new InvoiceDetail(Invoice_ID,Watch_ID,Quantity,Name,Photo,Total));
             }
             conn.close();
         }

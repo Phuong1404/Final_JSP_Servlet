@@ -83,7 +83,7 @@
                     <span style="margin-left: 110px;">Số lượng tồn :&nbsp;${watch.getQuantityInStock()} </span>
                 </div>
 
-                <a  class="btn btn-danger btn-buynow" >MUA NGAY</a>
+                <a  class="btn btn-danger btn-buynow" onclick="Checkout('${watch.getID()}')" >MUA NGAY</a>
                 <a class="btn btn-danger btn-buynow" onclick="AddCart('${watch.getID()}')">THÊM VÀO GIỎ HÀNG</a>
 
             </div>
@@ -326,7 +326,7 @@
                     data:{ID:ID,Quantity:a,Type:1},
                     success:function (res)
                     {
-                        alert(res)
+                            alert(res)
                     }
                 })
             }
@@ -355,10 +355,10 @@
                     $.ajax({
                         type: "Post",
                         url: "product", //Tên servlet
-                        data:{ID:ID,Quantity:a,Type:1},
+                        data:{ID:ID,Quantity:a,Type:2},
                         success:function (res)
                         {
-                            alert(res)
+                            window.location="http://localhost:8082/JSP_servlet_war_exploded/checkout"
                         }
                     })
                 }
