@@ -13,6 +13,8 @@ public interface TransportDAO {
 
     public void updateTransport(String ID) throws SQLException,ClassNotFoundException;
 
+    public List<Transport> getList() throws SQLException, ClassNotFoundException;
+
     public List<Transport> getList(String UserID) throws SQLException, ClassNotFoundException;
 
     public Transport getTransport(String ID) throws SQLException, ClassNotFoundException;

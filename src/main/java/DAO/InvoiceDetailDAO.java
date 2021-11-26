@@ -9,6 +9,8 @@ public interface InvoiceDetailDAO
 {
     public void addInvoiceDetail(InvoiceDetail a) throws SQLException, ClassNotFoundException;
 
+    public void delInvoiceDetailByID(String Invoice_ID) throws SQLException, ClassNotFoundException;
+
     public void delInvoiceDetail(String Invoice_ID,String Watch_ID) throws SQLException, ClassNotFoundException;
 
     public List<InvoiceDetail>getList(String Invoice_ID) throws SQLException, ClassNotFoundException;

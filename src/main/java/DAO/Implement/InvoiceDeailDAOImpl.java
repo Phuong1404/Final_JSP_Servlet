@@ -31,6 +31,23 @@ public class InvoiceDeailDAOImpl implements InvoiceDetailDAO
     }
 
     @Override
+    public void delInvoiceDetailByID(String Invoice_ID) throws SQLException, ClassNotFoundException {
+        Connection conn = DBConnection.getConnection();
+        String sql="{call sp_Delete_InvoiceDetail(?,?)}";
+        try
+        {
+            CallableStatement csnt=conn.prepareCall(sql);
+            csnt.setString(1,Invoice_ID);
+            csnt.executeUpdate();
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void delInvoiceDetail(String Invoice_ID, String Watch_ID) throws SQLException, ClassNotFoundException {
         Connection conn = DBConnection.getConnection();
         String sql="{call sp_Delete_InvoiceDetail(?,?)}";

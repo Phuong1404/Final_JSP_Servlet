@@ -52,25 +52,25 @@
             <%Account loginedUser1= MyUtils.getLoginedUser(request.getSession());%>
             <% if(loginedUser1==null){%>
             <div class="header-nav__list">
-                <button type="button" class="btn btn--mod me-3" data-modal="login__model">
+                <a type="button" class="btn btn--mod me-3" href="${pageContext.request.contextPath}/login" data-modal="login__model">
                     <i class="material-icons" style=" vertical-align: middle;">login</i>
                     ĐĂNG NHẬP
-                </button>
-                <button type="button" class="btn btn--mod" data-modal="signup__model">
+                </a>
+                <a type="button" class="btn btn--mod" href="${pageContext.request.contextPath}/signup" data-modal="signup__model">
                     <i class="material-icons" style=" vertical-align: middle;">app_registration</i>
                     ĐĂNG KÍ
-                </button>
+                </a>
             </div>
             <%} else {%>
             <div class="header-nav__list">
-                <button type="button" class="btn btn--mod me-3">
+                <a type="button" href="${pageContext.request.contextPath}/cart" class="btn btn--mod me-3">
                     <i class="material-icons" style=" vertical-align: middle;">shopping_cart</i>
                     GIỎ HÀNG
-                </button>
-                <button type="button" class="btn btn--mod">
+                </a>
+                <a type="button" class="btn btn--mod">
                     <i class="material-icons" style=" vertical-align: middle;">manage_accounts</i>
                     TÀI KHOẢN
-                </button>
+                </a>
             </div>
             <%}%>
 

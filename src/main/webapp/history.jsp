@@ -170,11 +170,11 @@
               <td style="padding-top: 35px;">
                 ` + result[item].Status + `
               </td>
-              <td style="padding-top: 35px;">` + result[item].MethodShip + `</td>
+              <td style="padding-top: 35px;">Giao hàng ` + result[item].MethodShip + `</td>
               <td style="padding-top: 35px;">` + result[item].Total + `</td>`
           if(result[item].CheckS==false)
           {
-            htmlstring+=`<td style="padding-top: 35px;"><a  class="text-danger mr-2" >
+            htmlstring+=`<td style="padding-top: 35px;"><a onclick="Delete('` + result[item].ID + `','` + result[item].Invoice_ID + `')"  class="text-danger mr-2" >
                                     <i class="far fa-trash-alt"></i>
                                 </a></td>`
           }
@@ -190,6 +190,17 @@
   $(document).ready(function(){
     LoadData();
   })
+  function Delete(data,data1)
+  {
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:8082/JSP_servlet_war_exploded/history", //Tên servlet
+      data:{ID:data,Invoice_ID:data1},
+      success:function (){
+        LoadData();
+      }
+    })
+  }
 </script>
 </body>
 </html>

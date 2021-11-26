@@ -71,6 +71,40 @@ public class TransportDAOImpl implements TransportDAO
     }
 
     @Override
+    public List<Transport> getList() throws SQLException, ClassNotFoundException {
+        Connection conn= DBConnection.getConnection();
+
+        String sql="SELECT Transport.ID,Invoice_ID,Name,Email,Phone,Address,Status,CheckS,Total,MethodShip FROM dbo.Transport,dbo.Invoice WHERE Invoice_ID=Invoice.ID";
+        List<Transport>list=new ArrayList<Transport>();
+        try
+        {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString("ID");
+                String Invoice_ID=rs.getString("Invoice_ID");
+                String Name=rs.getString("Name");
+                String Email=rs.getString("Email");
+                String Phone=rs.getString("Phone");
+                String Address=rs.getString("Address");
+                String Status=rs.getString("Status");
+                boolean CheckS=rs.getBoolean("CheckS");
+                int Total=rs.getInt("Total");
+                String MethodShip=rs.getString("MethodShip");
+
+                list.add(new Transport(ID,Invoice_ID,Name,Email,Phone,Address,Status,CheckS,Total,MethodShip));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public List<Transport> getList(String UserID) throws SQLException, ClassNotFoundException {
         Connection conn= DBConnection.getConnection();
 

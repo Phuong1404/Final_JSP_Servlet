@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: User
-  Date: 10/25/2021
-  Time: 8:47 PM
+  Date: 11/26/2021
+  Time: 7:23 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - user</title>
+    <title>Admin - Accept</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -56,10 +56,10 @@
                 <a href="${pageContext.request.contextPath}/watch" class="nav-link">Đồng hồ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="" class="nav-link">Khách hàng</a>
+                <a href="${pageContext.request.contextPath}/user" class="nav-link">Khách hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/accept" class="nav-link">Xác nhận đơn hàng</a>
+                <a href="" class="nav-link">Xác nhận đơn hàng</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -71,7 +71,7 @@
                     <i style="display:inline; padding-left: 28px;" class="fas fa-chart-bar"></i>
                     Thống kê
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/user">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-users"></i>
                     Khách hàng
                 </a>
@@ -81,7 +81,7 @@
                     Hãng đồng hồ
                 </a>
 
-                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/watch">
+                <a style=" padding-left: 5px;" class="nav-link" href="">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-clock"></i>
                     Đồng hồ
                 </a>
@@ -90,7 +90,7 @@
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
-                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/accept">
+                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/infoadmin">
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng
                 </a>
@@ -108,77 +108,33 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Khách hàng</h1>
+                        <h1 class="m-0">Xác nhận đơn hàng</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Khách hàng</li>
+                            <li class="breadcrumb-item active">Xác nhận đơn hàng</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <section class="content">
+        <section class="content" id="test1">
             <div class="container-fluid">
                 <div class="row">
                     <!-- left column -->
-                    <div class="card card-primary col-md-4">
-                        <div class="card-header" style="background-color: #17a2b8;">
-                            <h3 class="card-title">Thêm người quản lý</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form method="post" onsubmit="return false">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên người quản lý</label>
-                                    <input type="text" class="form-control" id="Name" placeholder="Tên người quản lý" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Ngày sinh</label>
-                                    <input type="date" class="form-control" id="Birth" placeholder="Ngày sinh" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="Address" placeholder="Địa chỉ" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Email</label>
-                                    <input type="email" class="form-control" id="Email" placeholder="Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="Phone" placeholder="Số điện thoại" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Username</label>
-                                    <input type="text" class="form-control" id="UserName" placeholder="Username" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="Password" placeholder="Password" required>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" id="add" style="background-color: #17a2b8;">Thêm</button>
-                            </div>
-                        </form>
-                    </div>
                     <!-- List -->
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Danh sách đồng hồ</h3>
+                                <h3 class="card-title">Đơn hàng cần xác nhận</h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" id="Search" onkeyup="Load1()" class="form-control float-right" placeholder="Tìm kiếm">
+                                        <input type="text" name="table_search" id="Search" class="form-control float-right" placeholder="Tìm kiếm">
 
                                         <div class="input-group-append">
-                                            <button onclick="Search1()" class="btn btn-default">
+                                            <button class="btn btn-default">
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>
@@ -190,16 +146,17 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>Mã số </th>
-                                        <th>Họ tên </th>
-                                        <th>Ngày sinh</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Khách hàng</th>
                                         <th>Địa chỉ</th>
-                                        <th>Email</th>
                                         <th>Số điện thoại</th>
+                                        <th>Vận chuyển</th>
+                                        <th>Tổng</th>
+                                        <th>Trạng thái</th>
                                         <th>Hành động</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="row">
+                                    <tbody  id="row">
 
                                     </tbody>
                                 </table>
@@ -225,10 +182,10 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- load Update -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
-<script src="operation/user.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
@@ -255,5 +212,58 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<script>
+    //Load data
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8082/JSP_servlet_war_exploded/loadaccept", //Tên servlet
+            success:function (result){
+                var row=document.getElementById("row")
+                row.innerHTML=""
+                row.innerHTML+=result
+            }
+        })
+    })
+    function Update(data)
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8082/JSP_servlet_war_exploded/accept", //Tên servlet
+            data:{ID:data},
+            success:function (){
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8082/JSP_servlet_war_exploded/loadaccept", //Tên servlet
+                    success:function (result){
+                        var row=document.getElementById("row")
+                        row.innerHTML=""
+                        row.innerHTML+=result
+                    }
+                })
+            }
+        })
+    }
+    function Delete(data,data1)
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8082/JSP_servlet_war_exploded/loadaccept", //Tên servlet
+            data:{ID:data,Invoice_ID:data1},
+            success:function (){
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8082/JSP_servlet_war_exploded/loadaccept", //Tên servlet
+                    success:function (result){
+                        var row=document.getElementById("row")
+                        row.innerHTML=""
+                        row.innerHTML+=result
+                    }
+                })
+            }
+        })
+    }
+</script>
+
 </body>
 </html>

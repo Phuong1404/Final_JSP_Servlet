@@ -285,4 +285,20 @@
         <servlet-name>invoicedetail</servlet-name>
         <url-pattern>/invoicedetail</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>accept</servlet-name>
+        <servlet-class>Controller.AcceptTranport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accept</servlet-name>
+        <url-pattern>/accept</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>loadaccept</servlet-name>
+        <servlet-class>Controller.loadTransport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loadaccept</servlet-name>
+        <url-pattern>/loadaccept</url-pattern>
+    </servlet-mapping>
 </web-app>

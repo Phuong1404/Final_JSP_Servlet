@@ -1,6 +1,5 @@
 package Controller;
 
-import DAO.Implement.InvoiceDAOImpl;
 import DAO.Implement.TransportDAOImpl;
 import DAO.MyUtils;
 import Model.Account;
@@ -14,11 +13,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class History extends HttpServlet
-{
+public class AcceptTranport extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public History() {
+    public AcceptTranport() {
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,22 +24,19 @@ public class History extends HttpServlet
         Account loginedUser= MyUtils.getLoginedUser(session);
         if(loginedUser==null)
         {
-            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/history");
+            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/accept");
             response.sendRedirect(request.getContextPath()+"/login");
             return;
         }
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/history.jsp");
+        //trước mỗi sản phẩm sẽ có checkbox khi on thì thêm vào 1 biến data off thì xóa khỏi biến data
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/AcceptTranport.jsp");
         dispatcher.forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //delete
         String ID=request.getParameter("ID");
-        String Invoice_ID=request.getParameter("Invoice_ID");
         TransportDAOImpl tran=new TransportDAOImpl();
-        InvoiceDAOImpl in=new InvoiceDAOImpl();
         try {
-            tran.delTransport(ID);
-            in.delInvoice(Invoice_ID);
+            tran.updateTransport(ID);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
