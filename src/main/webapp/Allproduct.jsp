@@ -22,153 +22,32 @@
 
 <body>
 <main>
-    <header class="header">
-        <div class="grid">
-            <nav class="header__navbar">
-                <a class="header-nav__logo" href="#">
-                    <img class="header-nav__logo-img" src="assets/img/logo.jpg" alt="PK logo">
-                    <p class="header-nav__logo-name">STORE</p>
-                </a>
-
-                <div class="header-nav__search">
-                    <input type="text" class="search__input" id="search1" placeholder="Nhập để tìm kiếm sản phẩm">
-                    <button class="search__btn">
-                        <i class="material-icons search__btn-icon" onclick="GetSearch()" style=" vertical-align: middle;">search</i>
-                    </button>
-                    <div class="search__option hidden">
-                        <ul class="search__option-list">
-                            <a href="#">
-                                <li class="search__option-item">Đồng hồ Casio</li>
-                            </a>
-                            <a href="#">
-                                <li class="search__option-item">Đồng hồ Casio</li>
-                            </a>
-                            <a href="#">
-                                <li class="search__option-item">Đồng hồ Casio</li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-
-                <%Account loginedUser1= MyUtils.getLoginedUser(request.getSession());%>
-                <% if(loginedUser1==null){%>
-                <div class="header-nav__list">
-                    <button type="button" class="btn btn--mod me-3" data-modal="login__model">
-                        <i class="material-icons" style=" vertical-align: middle;">login</i>
-                        ĐĂNG NHẬP
-                    </button>
-                    <button type="button" class="btn btn--mod" data-modal="signup__model">
-                        <i class="material-icons" style=" vertical-align: middle;">app_registration</i>
-                        ĐĂNG KÍ
-                    </button>
-                </div>
-                <%} else {%>
-                <div class="dropdown">
-                    <a class="btn dropdown-toggle btn--mod" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons" style=" vertical-align: middle;">person_outline</i>
-                        <span>TÀI KHOẢN</span>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Chỉnh sửa thông tin</a></li>
-                        <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li>
-                        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-                    </ul>
-                </div>
-
-                <%}%>
-
-
-            </nav>
-        </div>
-        <nav class="header__container">
-            <ul class="header-container__list grid grid__row">
-                <li class="header-container__item">
-                    <a href="#" class="header-container__link">
-                        PK STORE
-                    </a>
-                </li>
-                <li class="header-container__item">
-                    <a href="#" class="header-container__link">ĐỒNG HỒ</a>
-                    <div class="container__dropdown grid grid__row">
-                        <ul class="container-dropdown__list">
-                            <li class="container-dropdown__item container-dropdown__title">THƯƠNG HIỆU</li>
-                            <hr class="line">
-                            <li class="container-dropdown__item"> <a href="#">Rolex</a></li>
-                            <li class="container-dropdown__item"><a href="#">Omega</a></li>
-                            <li class="container-dropdown__item"><a href="#">Hublot</a></li>
-                            <li class="container-dropdown__item"><a href="#">Swatch</a></li>
-                            <li class="container-dropdown__item"><a href="#">Roamer</a></li>
-                        </ul>
-                        <ul class="container-dropdown__list">
-                            <li class="container-dropdown__item container-dropdown__title">MỨC GIÁ</li>
-                            <hr class="line">
-                            <li class="container-dropdown__item"> <a href="#">2 - 5 Triệu</a></li>
-                            <li class="container-dropdown__item"><a href="#">5 - 10 Triệu</a></li>
-                            <li class="container-dropdown__item"><a href="#">10 - 20 Triệu</a></li>
-                            <li class="container-dropdown__item"><a href="#">20 - 50 Triệu</a></li>
-                            <li class="container-dropdown__item"><a href="#">50 - 100 Triệu</a></li>
-                        </ul>
-                        <ul class="container-dropdown__list">
-                            <li class="container-dropdown__item container-dropdown__title">BỘ MÁY</li>
-                            <hr class="line">
-                            <li class="container-dropdown__item"> <a href="#">Máy pin</a></li>
-                            <li class="container-dropdown__item"><a href="#">Máy quang</a></li>
-                            <li class="container-dropdown__item"><a href="#">Máy cơ</a></li>
-                        </ul>
-                        <ul class="container-dropdown__list">
-                            <li class="container-dropdown__item container-dropdown__title">LOẠI DÂY</li>
-                            <hr class="line">
-                            <li class="container-dropdown__item"> <a href="#">Dây vải</a></li>
-                            <li class="container-dropdown__item"><a href="#">Dây nhựa</a></li>
-                            <li class="container-dropdown__item"><a href="#">Dây da</a></li>
-                            <li class="container-dropdown__item"><a href="#">Dây kim loại</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="header-container__item">
-                    <a href="#" class="header-container__link">PHỤ KIỆN</a>
-                </li>
-
-                <li class="header-container__item">
-                    <a href="#" class="header-container__link">TIN TỨC</a>
-
-                </li>
-
-                <li class="header-container__item">
-                    <a href="#" class="header-container__link">CSKH</a>
-
-                </li>
-
-            </ul>
-        </nav>
-    </header>
+    <header><jsp:include page="header.jsp"></jsp:include></header>
 
     <div class="product-main grid">
         <div class="product-brand margin">
             <div class="header-title">Thương hiệu</div>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand1.png"
+            <a  class="product-brand__link"><img src="assets/img/brand1.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand2.png"
+            <a  class="product-brand__link"><img src="assets/img/brand2.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand3.png"
+            <a  class="product-brand__link"><img src="assets/img/brand3.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand4.png"
+            <a  class="product-brand__link"><img src="assets/img/brand4.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand5.png"
+            <a  class="product-brand__link"><img src="assets/img/brand5.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand6.png"
+            <a  class="product-brand__link"><img src="assets/img/brand6.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand7.png"
+            <a class="product-brand__link"><img src="assets/img/brand7.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand8.png"
+            <a  class="product-brand__link"><img src="assets/img/brand8.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand9.png"
+            <a  class="product-brand__link"><img src="assets/img/brand9.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand10.png"
+            <a  class="product-brand__link"><img src="assets/img/brand10.png"
                                                          class="product-brand__img"></a>
-            <a href="#" class="product-brand__link"><img src="assets/img/brand11.png"
+            <a  class="product-brand__link"><img src="assets/img/brand11.png"
                                                          class="product-brand__img"></a>
         </div>
         <div class="product-cat row">
@@ -180,7 +59,7 @@
                     <div class="filter__select">
                             <!-- Chỉnh ID trùng vs FOR -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Rolex">
+                                <input class="form-check-input" type="radio" name="" value="" id="Rolex">
                                 <label class="form-check-label" for="Rolex">
                                     Rolex
                                 </label>

@@ -43,19 +43,19 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link"  href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link"  role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Trang chủ</a>
+                <a href="${pageContext.request.contextPath}" class="nav-link">Trang chủ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Giỏ hàng</a>
+                <a href="${pageContext.request.contextPath}/cart" class="nav-link">Giỏ hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Lịch sử mua hàng</a>
+                <a href="${pageContext.request.contextPath}/history" class="nav-link">Lịch sử mua hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Thông tài khoản</a>
+                <a href="${pageContext.request.contextPath}/infoadmin" class="nav-link">Thông tài khoản</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -63,20 +63,20 @@
                 <i class="fas fa-users-cog" style="color:#6c757d"></i>
             </button>
             <div class="dropdown-content">
-                <a style="padding-left: 5px;" class="nav-link" href="index.html">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/cart">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-chart-bar"></i>
                     Giỏ hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" href="${pageContext.request.contextPath}/history" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;" class="fas fa-users"></i>
                     Lịch sử mua hàng
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" class="nav-link" href="#">
+                <a style=" padding-left: 5px;" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -84,88 +84,110 @@
         </div>
         <!-- Right navbar links -->
     </nav>
-    <div class="content-wrapper" style="margin-left: 0px;">
-        <h1 style="margin-left:600px;"><b>Chi tiết đơn hàng</b></h1>
-        <div class="container">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Chi tiết đơn hàng</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content" id="test1">
+        <div class="container-fluid">
             <div class="row">
-                <!-- Cart -->
-                <div class="col-md-8 order-md-1">
-                    <div class="table-responsive">
-                        <table class="table product-table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Sản Phẩm</th>
-                                <th>Số Lượng</th>
-                                <th>Tổng Cộng</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${product}" var="item">
-                            <tr>
-                                <th scope="row">
-                                    <img src="Image/${item.getPhoto()}"
-                                         alt="" class="img-fluid" style="width:100px;height:100px;"/>
-                                </th>
-                                <td style="padding-top: 45px;">
-                                    <h5>
-                                        <strong>${item.getName()}</strong>
-                                    </h5>
-                                </td>
-                                <td style="padding-top: 45px;">${item.getQuantity()}</td>
-                                <td style="padding-top: 45px;">${item.getTotal()}</td>
-                            </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+                <!-- left column -->
+                <div class="col-md-4 order-md-2 mb-4">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header" style="background-color: #17a2b8;">
+                            <h3 class="card-title">Thông tin chi tiết</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div style="height: 273px;" id="addform" method="post" onsubmit="return false">
+                            <ul class="list-group mb-3 sticky-top">
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Họ tên</h6>
+                                        <small class="text-muted">${info.getName()}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Địa chỉ</h6>
+                                        <small class="text-muted">${info.getAddress()}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Email</h6>
+                                        <small class="text-muted">${info.getEmail()}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Số điện thoại</h6>
+                                        <small class="text-muted">${info.getPhone()}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Tổng tiền (VNĐ)</span>
+                                    <strong>${info.getTotal()}</strong>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 order-md-2 mb-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Thông tin đơn hàng</span>
-                    </h4>
-                    <ul class="list-group mb-3 sticky-top">
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">Họ tên</h6>
-                                <small class="text-muted">${info.getName()}</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">Địa chỉ</h6>
-                                <small class="text-muted">${info.getAddress()}</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">Email</h6>
-                                <small class="text-muted">${info.getEmail()}</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">Số điện thoại</h6>
-                                <small class="text-muted">${info.getPhone()}</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Tổng tiền (VNĐ)</span>
-                            <strong>${info.getTotal()}</strong>
-                        </li>
-                    </ul>
+
+                <!-- List -->
+                <div class="col-md-8 order-md-1">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 320px;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Số Lượng</th>
+                                    <th>Tổng Cộng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${product}" var="item">
+                                    <tr>
+                                        <th scope="row">
+                                            <img src="Image/${item.getPhoto()}"
+                                                 alt="" class="img-fluid" style="width:91px;height:110px;"/>
+                                        </th>
+                                        <td style="padding-top: 45px;">
+                                            <h5>
+                                                <strong>${item.getName()}</strong>
+                                            </h5>
+                                        </td>
+                                        <td style="padding-top: 45px;">${item.getQuantity()}</td>
+                                        <td style="padding-top: 45px;">${item.getTotal()}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
+                <!-- List -->
+
             </div>
         </div>
-    </div>
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.1.0
-        </div>
-    </footer>
-
+    </section>
 </div>
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

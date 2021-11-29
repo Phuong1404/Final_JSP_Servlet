@@ -18,6 +18,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/dropdown1.css">
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 170px;
+            left: 0;
+            font-size: 15px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,10 +79,15 @@
                     <i class="material-icons" style=" vertical-align: middle;">shopping_cart</i>
                     GIỎ HÀNG
                 </a>
-                <a type="button" class="btn btn--mod">
-                    <i class="material-icons" style=" vertical-align: middle;">manage_accounts</i>
-                    TÀI KHOẢN
-                </a>
+                    <div class="dropdown">
+                        <button class="btn btn--mod "><i class="material-icons" style=" vertical-align: middle;">account_circle</i>TÀI KHOẢN</button>
+                        <div class="dropdown-content">
+                            <a type="button" class="btn " style="text-align: left" href="${pageContext.request.contextPath}/infoadmin">Thông tin tài khoản </a>
+                            <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/history">Lịch sử mua hàng </a>
+                            <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/logout">Đăng xuất </a>
+                            <a type="button" class="btn " style="text-align: left"  href="#"></a>
+                        </div>
+                    </div>
             </div>
             <%}%>
 

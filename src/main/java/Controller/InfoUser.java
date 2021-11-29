@@ -1,10 +1,9 @@
-package Controller.Admin.Information;
+package Controller;
 
 import DAO.Implement.UserDAOImpl;
 import DAO.MyUtils;
 import Model.Account;
 import Model.User;
-import com.google.gson.Gson;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,15 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 
-public class changeInfomationServlet extends HttpServlet
+public class InfoUser extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
-    public changeInfomationServlet() {
+    public InfoUser() {
         super();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,8 +32,8 @@ public class changeInfomationServlet extends HttpServlet
             return;
         }
         else {
-                RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/infoadmin.jsp");
-                dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/infoadmin.jsp");
+            dispatcher.forward(request, response);
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

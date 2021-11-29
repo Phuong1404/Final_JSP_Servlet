@@ -80,10 +80,6 @@
                     Đồng hồ
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/infoadmin">
-                    <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
-                    Thông tin tài khoản
-                </a>
                 <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/accept">
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng

@@ -31,7 +31,7 @@ public class InvoiceDAOImpl implements InvoiceDAO
     @Override
     public void delInvoice(String ID) throws SQLException, ClassNotFoundException {
         Connection conn = DBConnection.getConnection();
-        String sql="{call sp_Delete_User(?)}";
+        String sql="{call sp_Delete_Invoice(?)}";
         try
         {
             CallableStatement csnt=conn.prepareCall(sql);

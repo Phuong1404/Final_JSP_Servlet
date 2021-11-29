@@ -42,19 +42,19 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link"  href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link"  role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Trang chủ</a>
+                <a href="${pageContext.request.contextPath}" class="nav-link">Trang chủ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Giỏ hàng</a>
+                <a  class="nav-link">Giỏ hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Lịch sử mua hàng</a>
+                <a href="${pageContext.request.contextPath}/history" class="nav-link">Lịch sử mua hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Thông tài khoản</a>
+                <a href="${pageContext.request.contextPath}/infoadmin" class="nav-link">Thông tài khoản</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -62,20 +62,20 @@
                 <i class="fas fa-users-cog" style="color:#6c757d"></i>
             </button>
             <div class="dropdown-content">
-                <a style="padding-left: 5px;" class="nav-link" href="index.html">
+                <a style="padding-left: 5px;" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;" class="fas fa-chart-bar"></i>
                     Giỏ hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" href="${pageContext.request.contextPath}/history" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;" class="fas fa-users"></i>
                     Lịch sử mua hàng
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" class="nav-link" href="#">
+                <a style=" padding-left: 5px;" href="${pageContext.request.contextPath}/infoadmin" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -83,42 +83,58 @@
         </div>
         <!-- Right navbar links -->
     </nav>
-    <div class="content-wrapper" style="margin-left: 0px;">
-        <h1 style="margin-left:700px;"><b>Giỏ hàng</b></h1>
-        <div class="container">
-            <!-- Cart -->
-            <section class="section">
-                <div class="table-responsive">
-                    <table class="table product-table">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" id="all" onclick="AllCheck()"></th>
-                            <th></th>
-                            <th>Sản Phẩm</th>
-                            <th>Giá</th>
-                            <th>Số Lượng</th>
-                            <th>Tổng Cộng</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody id="Row1">
-                        </tbody>
-                    </table>
-                    <div id="row2">
-                        <h2 style="padding-left: 880px"><strong>Tổng tiền : 0 đ</strong></h2>
-                    </div>
-                    <button style="margin-left: 980px; margin-top: 10px" onclick="ThanhToan()" id="btnbuy" class="btn btn-primary btn-buynow">MUA NGAY</button>
-                </div>
-            </section>
-        </div>
-    </div>
-    <footer class="main-footer">
-        <strong>Website bán đồng hồ hàng đầu thế giới.</strong>
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.1.0
-        </div>
-    </footer>
 
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Giỏ hàng</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Giỏ hàng</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content" id="test1">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <!-- List -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 460px;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="all" onclick="AllCheck()"></th>
+                                    <th></th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số Lượng</th>
+                                    <th>Tổng Cộng</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody id="Row1">
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+        <div id="row2">
+            <h2 style="padding-left: 20px"><strong>Tổng tiền : 0 đ</strong></h2>
+        </div>
+        <button style="margin-left: 20px; margin-top: 5px" onclick="ThanhToan()" id="btnbuy" class="btn btn-primary btn-buynow">MUA NGAY</button>
+    </section>
 </div>
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -183,7 +199,7 @@
                             <td style="padding-top: 58px;"><input id="`+item+`" type="checkbox" onchange="AddChose('`+result[item].ID+`',`+result[item].Quantity+`,`+item+`,`+(result[item].Price*result[item].Quantity)+`)"></td>
                             <td scope="row">
                                 <img src="Image/`+result[item].Photo+`"
-                                     alt="" class="img-fluid" style="width:100px;height:120px;"/>
+                                     alt="" class="img-fluid" style="width:91px;height:110px;"/>
                             </td>
                             <td style="padding-top: 58px;">
                                 <h5>
@@ -225,7 +241,7 @@
             totalcheck++
             var row=document.getElementById("row2")
             row.innerHTML=null
-            row.innerHTML='<h2 style="padding-left: 880px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
+            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
             if(Checkbuy==0)
             {
                 document.getElementById("btnbuy").disabled = true;
@@ -252,7 +268,7 @@
             totalcheck--
             var row=document.getElementById("row2")
             row.innerHTML=null
-            row.innerHTML='<h2 style="padding-left: 880px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
+            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
             if(Checkbuy==0)
             {
                 document.getElementById("btnbuy").disabled = true;
@@ -305,7 +321,7 @@
                         document.getElementById("all").checked=false;
                         var row=document.getElementById("row2")
                         row.innerHTML=null
-                        row.innerHTML='<h2 style="padding-left: 880px"><strong>Tổng tiền : 0 đ</strong></h2>'
+                        row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : 0 đ</strong></h2>'
                         document.getElementById("btnbuy").disabled = false;
                     }
                 })
@@ -325,7 +341,7 @@
                     document.getElementById("all").checked=false;
                     var row=document.getElementById("row2")
                     row.innerHTML=null
-                    row.innerHTML='<h2 style="padding-left: 880px"><strong>Tổng tiền : 0 đ</strong></h2>'
+                    row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : 0 đ</strong></h2>'
                     document.getElementById("btnbuy").disabled = false;
                 }
             })

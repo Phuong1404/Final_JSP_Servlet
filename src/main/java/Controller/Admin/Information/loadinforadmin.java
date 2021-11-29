@@ -29,8 +29,6 @@ public class loadinforadmin extends HttpServlet {
         UserDAOImpl u=new UserDAOImpl();
         User user=new User();
         String Role=loginedUser.getRole();
-        if(Role.equals("Dev")||Role.equals("Admin"))
-        {
             try {
                 user=u.getUser((String) loginedUser.getUserID());
             } catch (SQLException e) {
@@ -45,7 +43,5 @@ public class loadinforadmin extends HttpServlet {
             request.setCharacterEncoding("utf-8");
             PrintWriter out=response.getWriter();
             out.println(json);
-
-        }
     }
 }

@@ -41,25 +41,19 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link"  href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link"  role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="${pageContext.request.contextPath}" class="nav-link">Trang chủ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/admin" class="nav-link">Thống kê</a>
+                <a href="${pageContext.request.contextPath}/cart" class="nav-link">Giỏ hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/brand" class="nav-link">Hãng đồng hồ</a>
+                <a href="${pageContext.request.contextPath}/history" class="nav-link">Lịch sử mua hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/watch" class="nav-link">Đồng hồ</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/user" class="nav-link">Khách hàng</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/accept" class="nav-link">Xác nhận đơn hàng</a>
+                <a class="nav-link">Thông tài khoản</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -67,34 +61,20 @@
                 <i class="fas fa-users-cog" style="color:#6c757d"></i>
             </button>
             <div class="dropdown-content">
-                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/cart">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-chart-bar"></i>
-                    Thống kê
+                    Giỏ hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/user">
+                <a style="padding-left: 5px;" href="${pageContext.request.contextPath}/history" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;" class="fas fa-users"></i>
-                    Khách hàng
-                </a>
-
-                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/brand">
-                    <i style="display:inline; padding-left: 28px;" class="fas fa-clock"></i>
-                    Hãng đồng hồ
-                </a>
-
-                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/watch">
-                    <i style="display:inline; padding-left: 28px;" class="fas fa-clock"></i>
-                    Đồng hồ
+                    Lịch sử mua hàng
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" class="nav-link" href="">
+                <a style=" padding-left: 5px;"  class="nav-link" >
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
-                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/accept">
-                    <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
-                    Xác nhận đơn hàng
-                </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -135,7 +115,7 @@
 
                                 <h3 class="profile-username text-center" id="Name3"></h3>
 
-                                <p class="text-muted text-center">Quản lý</p>
+                                <p class="text-muted text-center" id="role1">Tài khoản</p>
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item" id="UserID3">
@@ -206,15 +186,6 @@
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
-
-        <footer class="main-footer" style="margin-top: 170px; margin-left: 0px" >
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.1.0
-            </div>
-        </footer>
-
     </div>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

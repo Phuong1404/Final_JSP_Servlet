@@ -20,6 +20,10 @@ public class MyUtils {
         Account acc=(Account) session.getAttribute("loginedUser");
         return acc;
     }
+    public static void delLoginedUser(HttpSession session)
+    {
+        session.removeAttribute("loginedUser");
+    }
     public static void storelink(HttpSession session, String loginedUser){
         session.setAttribute("link",loginedUser);
     }
