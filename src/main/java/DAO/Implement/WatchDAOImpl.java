@@ -314,4 +314,467 @@ public class WatchDAOImpl implements WatchDAO
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Watch> getList1() throws SQLException, ClassNotFoundException {
+        //Rolex
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=1";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList2() throws SQLException, ClassNotFoundException {
+        //Omega
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=2";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList3() throws SQLException, ClassNotFoundException {
+        //Hublot
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=3";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList4() throws SQLException, ClassNotFoundException {
+        //5 - 10 tr
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=5000000 AND Price<=10000000";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList5() throws SQLException, ClassNotFoundException {
+        //10 - 20 tr
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=10000000 AND Price<=20000000";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList6() throws SQLException, ClassNotFoundException {
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=20000000 AND Price<=50000000";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Watch> getList7() throws SQLException, ClassNotFoundException {
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=50000000 AND Price<=100000000";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList8() throws SQLException, ClassNotFoundException {
+        //cơ
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList9() throws SQLException, ClassNotFoundException {
+        //pin
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList10() throws SQLException, ClassNotFoundException {
+        //quang
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList11() throws SQLException, ClassNotFoundException {
+        //da
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList12() throws SQLException, ClassNotFoundException {
+        //nhựa
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList13() throws SQLException, ClassNotFoundException {
+        //kim loại
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList14() throws SQLException, ClassNotFoundException {
+        //dây kim loại
+        Connection conn =DBConnection.getConnection();
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Watch> getList15(String data) throws SQLException, ClassNotFoundException {
+        //search Name
+        Connection conn =DBConnection.getConnection();
+        String sql="{call sp_Search(?)}";
+        List<Watch>list = new ArrayList<Watch>();
+        try
+        {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setString(1,data);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                String ID=rs.getString(1);
+                String Name=rs.getString(2);
+                int TypeOfWatch_ID=rs.getInt(3);
+                String MachineType=rs.getString(4);
+                String WireType=rs.getString(5);
+                int Price =rs.getInt(6);
+                int QuantityInStock=rs.getInt(7);
+                String Image=rs.getString(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+            }
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

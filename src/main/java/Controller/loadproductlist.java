@@ -29,8 +29,51 @@ public class loadproductlist extends HttpServlet {
         try {
             if(ID==null) {
                 list = w.getList();
-            }else {
-                list=w.getWatch(ID);
+            }else if(ID.equals("1")){
+                list = w.getList1();
+            }
+            else if(ID.equals("2")){
+                list = w.getList2();
+            }
+            else if(ID.equals("3")){
+                list = w.getList3();
+            }
+            else if(ID.equals("4")){
+                list = w.getList4();
+            }
+
+            else if(ID.equals("5")){
+                list = w.getList5();
+            }
+            else if(ID.equals("6")){
+                list = w.getList6();
+            }
+            else if(ID.equals("7")){
+                list = w.getList7();
+            }
+            else if(ID.equals("8")){
+                list = w.getList8();
+            }
+            else if(ID.equals("9")){
+                list = w.getList9();
+            }
+            else if(ID.equals("10")){
+                list = w.getList10();
+            }
+            else if(ID.equals("11")){
+                list = w.getList11();
+            }
+            else if(ID.equals("12")){
+                list = w.getList12();
+            }
+            else if(ID.equals("13")){
+                list = w.getList13();
+            }
+            else if(ID.equals("14")){
+                list = w.getList14();
+            }
+            else{
+                list=w.getList15(ID);
             }
         } catch (SQLException e) {
             e.printStackTrace();

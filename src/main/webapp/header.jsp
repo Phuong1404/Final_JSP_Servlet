@@ -29,6 +29,59 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
+
+        .header-nav__search1 {
+            position: relative;
+            display: flex;
+            background-color: #fff;
+            flex: 0.6;
+            height: 32px;
+            border-radius: 2px;
+        }
+
+        .header-nav__search1 .search__input {
+            width: 100%;
+            height: 100%;
+            font-size: 1.4rem;
+            border: none;
+            outline: none;
+            padding: 0 0.8rem;
+            border-radius: 0.3rem;
+        }
+
+        .header-nav__search1 .search__btn {
+            background-color: #dfb93f;
+            border: none;
+            margin: 0.3rem;
+            border-radius: 0.3rem;
+            outline: none;
+            width: 6rem;
+            height: 2.6rem;
+        }
+
+        .btn--mod:hover,
+        .header-nav__search1 .search__btn:hover {
+            background-color: #f1cc52;
+            cursor: pointer;
+            animation: jelly 0.5s;
+        }
+
+        .header-nav__search1 .search__btn-icon {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .header-nav__search1 .search__option {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 110%;
+            background-color: #fff;
+            font-size: 1.4rem;
+            border-radius: 0.3rem;
+            box-shadow: 0 0 0.3rem #ccc;
+            z-index: 999;
+        }
     </style>
 </head>
 
@@ -41,24 +94,11 @@
                 <p class="header-nav__logo-name">STORE</p>
             </a>
 
-            <div class="header-nav__search">
-                <input type="text" class="search__input" placeholder="Nhập để tìm kiếm sản phẩm">
-                <button class="search__btn">
+            <div class="header-nav__search1">
+                <input type="text" class="search__input" placeholder="Nhập để tìm kiếm sản phẩm" id="search2">
+                <button class="search__btn" onclick="GetSearch1()">
                     <i class="material-icons search__btn-icon" style=" vertical-align: middle;">search</i>
                 </button>
-                <div class="search__option hidden">
-                    <ul class="search__option-list">
-                        <a href="#">
-                            <li class="search__option-item">Đồng hồ Casio</li>
-                        </a>
-                        <a href="#">
-                            <li class="search__option-item">Đồng hồ Casio</li>
-                        </a>
-                        <a href="#">
-                            <li class="search__option-item">Đồng hồ Casio</li>
-                        </a>
-                    </ul>
-                </div>
             </div>
 
             <%Account loginedUser1= MyUtils.getLoginedUser(request.getSession());%>
@@ -158,7 +198,6 @@
     </nav>
 </header>
     <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
-    <script src="assets/js/app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
 

@@ -95,7 +95,7 @@ html {
     margin-right: 0.5rem;
 }
 
-.header-nav__search {
+.header-nav__search1 {
     position: relative;
     display: flex;
     background-color: var(--white-color);
@@ -104,7 +104,7 @@ html {
     border-radius: 2px;
 }
 
-.header-nav__search .search__input {
+.header-nav__search1 .search__input {
     width: 100%;
     height: 100%;
     font-size: 1.4rem;
@@ -114,7 +114,7 @@ html {
     border-radius: 0.3rem;
 }
 
-.header-nav__search .search__btn {
+.header-nav__search1 .search__btn {
     background-color: var(--hover-color) !important;
     border: none;
     margin: 0.3rem;
@@ -125,18 +125,18 @@ html {
 }
 
 .btn--mod:hover,
-.header-nav__search .search__btn:hover {
+.header-nav__search1 .search__btn:hover {
     background-color: var(--hover-up-color);
     cursor: pointer;
     animation: jelly 0.5s;
 }
 
-.header-nav__search .search__btn-icon {
+.header-nav__search1 .search__btn-icon {
     font-size: 2rem;
     color: var(--white-color);
 }
 
-.header-nav__search .search__option {
+.header-nav__search1 .search__option {
     position: absolute;
     left: 0;
     right: 0;
