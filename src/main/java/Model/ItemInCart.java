@@ -9,8 +9,9 @@ public class ItemInCart {
     private int Quantity;
     private int QuantityInStock;
     private String Photo;
+    private int Sale;
     public ItemInCart(){}
-    public ItemInCart(String ID,String Name,int Price,int Quantity,int QuantityInStock)
+    public ItemInCart(String ID,String Name,int Price,int Quantity,int QuantityInStock,int Sale)
     {
         this.ID=ID;
         this.Name=Name;
@@ -18,6 +19,7 @@ public class ItemInCart {
         this.Quantity=Quantity;
         this.QuantityInStock=QuantityInStock;
         this.Photo=ID+"(1).jpg";
+        this.Sale=Sale;
     }
     public String getID()
     {
@@ -65,6 +67,14 @@ public class ItemInCart {
 
     public void setPrice(int Price) {
         this.Price = Price;
+    }
+
+    public int getSale() {
+        return Sale;
+    }
+
+    public void setSale(int Sale) {
+        this.Sale = Sale;
     }
 
     public int getQuantityInStock() {

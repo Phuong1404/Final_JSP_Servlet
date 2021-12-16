@@ -2,6 +2,8 @@ package Controller.Admin.Watch;
 
 import DAO.Implement.PhotoOfWatchDAOImpl;
 import DAO.Implement.WatchDAOImpl;
+import DAO.MyUtils;
+import Model.Account;
 import Model.PhotoOfWatch;
 import Model.Watch;
 import org.apache.commons.fileupload.FileItem;
@@ -12,10 +14,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,6 +32,21 @@ public class watchServlet extends HttpServlet
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        Account loginedUser= MyUtils.getLoginedUser(session);
+        if(loginedUser==null)
+        {
+            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/watch");
+            response.sendRedirect(request.getContextPath()+"/login");
+            return;
+        }
+        else{
+            if(!loginedUser.getRole().equals("Admin"))
+            {
+                response.sendRedirect(request.getContextPath());
+                return;
+            }
+        }
         RequestDispatcher dispatcher=this.getServletContext().getRequestDispatcher("/watch.jsp");
         dispatcher.forward(request, response);
     }
@@ -54,9 +68,10 @@ public class watchServlet extends HttpServlet
         String Wire =request.getParameter("Wire");
         String Brand =request.getParameter("Brand");
         String Piece =request.getParameter("Piece");
+        String Sale =request.getParameter("Sale");
         String QuantityInStock =request.getParameter("QuantityInStock");
         //Thêm đồng hồ
-        Watch a=new Watch("1",name,Integer.parseInt(Brand),Machine,Wire,Integer.parseInt(Piece),Integer.parseInt(QuantityInStock));
+        Watch a=new Watch("1",name,Integer.parseInt(Brand),Machine,Wire,Integer.parseInt(Piece),Integer.parseInt(QuantityInStock),Integer.parseInt(Sale));
         try {
             t.addWatch(a);
         } catch (SQLException e) {

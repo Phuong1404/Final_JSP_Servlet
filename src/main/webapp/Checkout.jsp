@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>Đặt hàng</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -117,9 +117,9 @@
               <h6 class="my-0">`+result[item].Name+`</h6>
               <small class="text-muted">x `+result[item].Quantity+`</small>
             </div>
-            <span class="text-muted">`+(result[item].Quantity*result[item].Price)+` đ</span>
+            <span class="text-muted">`+((result[item].Price-((result[item].Price*result[item].Sale)/100))*result[item].Quantity).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</span>
           </li>`
-          total=total+(result[item].Quantity*result[item].Price)
+          total=total+(((result[item].Price-((result[item].Price*result[item].Sale)/100))*result[item].Quantity))
         }
 
         htmlstring+=`<li class="list-group-item d-flex justify-content-between lh-condensed" id="Row2">
@@ -132,7 +132,7 @@
 
         htmlstring+=`<li class="list-group-item d-flex justify-content-between" id="Row3">
           <span>Tổng (VNĐ)</span>
-          <strong>`+total+` đ</strong>
+          <strong>`+total.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</strong>
         </li>
       </ul>`
         row.innerHTML=htmlstring;
@@ -166,7 +166,7 @@
       var row1 = document.getElementById("Row3")
       row1.innerHTML = "";
       row1.innerHTML=`<span>Tổng (VNĐ)</span>
-    <strong>`+total+` đ</strong>`
+    <strong>`+total.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</strong>`
     }
   }
   function MethodShip2()
@@ -188,7 +188,7 @@
       var row1 = document.getElementById("Row3")
       row1.innerHTML = "";
       row1.innerHTML=`<span>Tổng (VNĐ)</span>
-    <strong>`+total+` đ</strong>`
+    <strong>`+total.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</strong>`
     }
   }
   function DatHang()

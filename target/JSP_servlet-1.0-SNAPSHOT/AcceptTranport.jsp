@@ -81,7 +81,7 @@
                     Hãng đồng hồ
                 </a>
 
-                <a style=" padding-left: 5px;" class="nav-link" href="">
+                <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/watch">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-clock"></i>
                     Đồng hồ
                 </a>
@@ -90,7 +90,7 @@
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -242,6 +242,7 @@
     }
     function Delete(data,data1)
     {
+        console.log(data,data1)
         $.ajax({
             type: "POST",
             url: "http://localhost:8082/JSP_servlet_war_exploded/loadaccept", //Tên servlet

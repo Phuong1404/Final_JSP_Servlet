@@ -90,7 +90,7 @@
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>

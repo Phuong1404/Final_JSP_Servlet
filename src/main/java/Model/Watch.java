@@ -8,12 +8,13 @@ public class Watch
     private String MachineType;
     private String WireType;
     private int Price;
+    private int Sale;
     private int QuantityInStock;
     private String Image;
     private String TypeOfWatch_Name;
     public Watch() {}
 
-    public Watch(String ID, String Name, int TypeOfWatch_ID,String MachineType,String WireType, int Price, int QuantityInStock)
+    public Watch(String ID, String Name, int TypeOfWatch_ID,String MachineType,String WireType, int Price, int QuantityInStock,int Sale)
     {
         this.ID = ID;
         this.Name = Name;
@@ -21,9 +22,10 @@ public class Watch
         this.MachineType=MachineType;
         this.WireType=WireType;
         this.Price = Price;
+        this.Sale=Sale;
         this.QuantityInStock = QuantityInStock;
     }
-    public Watch(String ID, String Name, int TypeOfWatch_ID,String MachineType,String WireType, int Price, int QuantityInStock,String Image)
+    public Watch(String ID, String Name, int TypeOfWatch_ID,String MachineType,String WireType, int Price, int QuantityInStock,String Image,int Sale)
     {
         this.ID = ID;
         this.Name = Name;
@@ -31,10 +33,11 @@ public class Watch
         this.MachineType=MachineType;
         this.WireType=WireType;
         this.Price = Price;
+        this.Sale=Sale;
         this.QuantityInStock = QuantityInStock;
         this.Image=Image;
     }
-    public Watch(String ID, String Name, String TypeOfWatch_Name,String MachineType,String WireType, int Price, int QuantityInStock,String Image)
+    public Watch(String ID, String Name, String TypeOfWatch_Name,String MachineType,String WireType, int Price, int QuantityInStock,String Image,int Sale)
     {
         this.ID = ID;
         this.Name = Name;
@@ -44,6 +47,7 @@ public class Watch
         this.Price = Price;
         this.QuantityInStock = QuantityInStock;
         this.Image=Image;
+        this.Sale=Sale;
     }
     public String getID() {
         return ID;
@@ -51,6 +55,14 @@ public class Watch
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public int getSale() {
+        return Sale;
+    }
+
+    public void setSale(int Sale) {
+        this.Sale = Sale;
     }
 
     public String getName() {

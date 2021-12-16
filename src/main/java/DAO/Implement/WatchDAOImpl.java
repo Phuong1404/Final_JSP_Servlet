@@ -14,7 +14,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public void addWatch(Watch c) throws SQLException, ClassNotFoundException {
         Connection conn= DBConnection.getConnection();
-        String sql="{call sp_Insert_Watch(?,?,?,?,?,?)}";
+        String sql="{call sp_Insert_Watch(?,?,?,?,?,?,?)}";
         try
         {
             CallableStatement csnt= conn.prepareCall(sql);
@@ -24,6 +24,7 @@ public class WatchDAOImpl implements WatchDAO
             csnt.setString(4,c.getWireType());
             csnt.setInt(5,c.getPrice());
             csnt.setInt(6,c.getQuantityInStock());
+            csnt.setInt(7,c.getSale());
             csnt.executeUpdate();
             conn.close();
         }
@@ -53,7 +54,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public List<Watch> getList() throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -69,7 +70,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -83,7 +85,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public List<Watch> getWatch(String id) throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Brand,dbo.Watch,dbo.PhotosOfWatch WHERE Brand_ID=Brand.ID AND Watch.ID=Watch_ID AND Watch.ID=?";
+        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Brand,dbo.Watch,dbo.PhotosOfWatch WHERE Brand_ID=Brand.ID AND Watch.ID=Watch_ID AND Watch.ID=?";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -100,7 +102,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -131,7 +134,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -161,7 +165,8 @@ public class WatchDAOImpl implements WatchDAO
                 String WireType=rs.getString(5);
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock));
+                int Sale =rs.getInt(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Sale));
             }
             conn.close();
         }
@@ -175,7 +180,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public Watch getOneWatch(String Id) throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock FROM dbo.Brand,dbo.Watch WHERE Brand_ID=Brand.ID AND Watch.ID=?";
+        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock,Sale FROM dbo.Brand,dbo.Watch WHERE Brand_ID=Brand.ID AND Watch.ID=?";
         Watch w=new Watch();
         try
         {
@@ -191,7 +196,8 @@ public class WatchDAOImpl implements WatchDAO
                 String WireType=rs.getString(5);
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
-                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,"1234");
+                int Sale =rs.getInt(8);
+                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,"1234",Sale);
             }
             conn.close();
         }
@@ -205,7 +211,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public Watch getOneWatchByName(String name) throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock FROM dbo.Brand,dbo.Watch WHERE Brand_ID=Brand.ID AND Watch.Name=?";
+        String sql="SELECT Watch.ID,Watch.Name,Brand.Name AS Brand,MachineType,WireType,Price,QuantityInStock,Sale FROM dbo.Brand,dbo.Watch WHERE Brand_ID=Brand.ID AND Watch.Name=?";
         Watch w=new Watch();
         try
         {
@@ -221,7 +227,8 @@ public class WatchDAOImpl implements WatchDAO
                 String WireType=rs.getString(5);
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
-                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,"1234");
+                int Sale =rs.getInt(8);
+                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,"1234",Sale);
             }
             conn.close();
         }
@@ -251,7 +258,8 @@ public class WatchDAOImpl implements WatchDAO
                 String WireType=rs.getString(5);
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
-                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock);
+                int Sale =rs.getInt(8);
+                w=new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Sale);
             }
             conn.close();
         }
@@ -281,7 +289,8 @@ public class WatchDAOImpl implements WatchDAO
                 String WireType=rs.getString(5);
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock));
+                int Sale =rs.getInt(8);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Sale));
             }
             conn.close();
         }
@@ -295,7 +304,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public void updateWatch(Watch a) throws SQLException, ClassNotFoundException {
         Connection conn=DBConnection.getConnection();
-        String sql="{call sp_Update_Watch (?,?,?,?,?,?,?)}";
+        String sql="{call sp_Update_Watch (?,?,?,?,?,?,?,?)}";
         try
         {
             CallableStatement csnt=conn.prepareCall(sql);
@@ -306,6 +315,7 @@ public class WatchDAOImpl implements WatchDAO
             csnt.setString(5,a.getWireType());
             csnt.setInt(6,a.getPrice());
             csnt.setInt(7,a.getQuantityInStock());
+            csnt.setInt(8,a.getSale());
             csnt.executeUpdate();
             conn.close();
         }
@@ -319,7 +329,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList1() throws SQLException, ClassNotFoundException {
         //Rolex
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=1";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=1";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -335,7 +345,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -350,7 +361,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList2() throws SQLException, ClassNotFoundException {
         //Omega
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=2";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=2";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -366,7 +377,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -381,7 +393,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList3() throws SQLException, ClassNotFoundException {
         //Hublot
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=3";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Brand_ID=3";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -397,7 +409,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -412,7 +425,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList4() throws SQLException, ClassNotFoundException {
         //5 - 10 tr
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=5000000 AND Price<=10000000";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=5000000 AND Price<=10000000";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -428,7 +441,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -443,7 +457,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList5() throws SQLException, ClassNotFoundException {
         //10 - 20 tr
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=10000000 AND Price<=20000000";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=10000000 AND Price<=20000000";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -459,7 +473,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -473,7 +488,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public List<Watch> getList6() throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=20000000 AND Price<=50000000";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=20000000 AND Price<=50000000";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -489,7 +504,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -502,7 +518,7 @@ public class WatchDAOImpl implements WatchDAO
 
     public List<Watch> getList7() throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=50000000 AND Price<=100000000";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND Price>=50000000 AND Price<=100000000";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -518,7 +534,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -533,7 +550,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList8() throws SQLException, ClassNotFoundException {
         //cơ
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N'Pin'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -549,7 +566,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -564,7 +582,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList9() throws SQLException, ClassNotFoundException {
         //pin
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N'Quang'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -580,7 +598,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -595,7 +614,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList10() throws SQLException, ClassNotFoundException {
         //quang
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND MachineType=N'Cơ'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -611,7 +630,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -626,7 +646,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList11() throws SQLException, ClassNotFoundException {
         //da
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N'Dây Da'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -642,7 +662,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -657,7 +678,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList12() throws SQLException, ClassNotFoundException {
         //nhựa
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N'Dây Nhựa'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -673,7 +694,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -688,7 +710,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList13() throws SQLException, ClassNotFoundException {
         //kim loại
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N'Dây Vải'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -704,7 +726,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -719,7 +742,7 @@ public class WatchDAOImpl implements WatchDAO
     public List<Watch> getList14() throws SQLException, ClassNotFoundException {
         //dây kim loại
         Connection conn =DBConnection.getConnection();
-        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N''";
+        String sql="SELECT ID,Name,Brand_ID,MachineType,WireType,Price,QuantityInStock,Photos,Sale FROM dbo.Watch,dbo.PhotosOfWatch WHERE Watch_ID=ID AND  SUBSTRING(Photos,6,1)=1 AND WireType=N'Dây Kim Loại'";
         List<Watch>list = new ArrayList<Watch>();
         try
         {
@@ -735,7 +758,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }
@@ -767,7 +791,8 @@ public class WatchDAOImpl implements WatchDAO
                 int Price =rs.getInt(6);
                 int QuantityInStock=rs.getInt(7);
                 String Image=rs.getString(8);
-                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image));
+                int Sale =rs.getInt(9);
+                list.add(new Watch(ID,Name,TypeOfWatch_ID,MachineType,WireType,Price,QuantityInStock,Image,Sale));
             }
             conn.close();
         }

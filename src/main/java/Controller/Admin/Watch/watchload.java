@@ -45,6 +45,7 @@ public class watchload extends HttpServlet {
                     "                                        <td>"+i.getWireType()+"</td>\n" +
                     "                                        <td>"+i.getPrice()+"</td>\n" +
                     "                                        <td>"+i.getQuantityInStock()+"</td>\n" +
+                    "                                        <td>"+i.getSale()+"</td>\n" +
                     "                                        <td>\n" +
                     "                                            <a  class=\"text-danger mr-2\" onclick=\"Delete('"+i.getID()+"')\">\n" +
                     "                                                <i class=\"far fa-trash-alt\"></i>\n" +

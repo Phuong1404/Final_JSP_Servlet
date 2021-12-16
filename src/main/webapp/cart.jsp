@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Loại đồng hồ</title>
+    <title>Giỏ hàng</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -37,7 +37,7 @@
 
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper"style="z-index: 0">
     <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px;">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
@@ -54,7 +54,7 @@
                 <a href="${pageContext.request.contextPath}/history" class="nav-link">Lịch sử mua hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/infoadmin" class="nav-link">Thông tài khoản</a>
+                <a href="${pageContext.request.contextPath}/infoaccount" class="nav-link">Thông tài khoản</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -71,7 +71,7 @@
                     Lịch sử mua hàng
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" href="${pageContext.request.contextPath}/infoadmin" class="nav-link" >
+                <a style=" padding-left: 5px;" href="${pageContext.request.contextPath}/infoaccount" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
@@ -180,7 +180,42 @@
     {
         for(var i =0;i<lengthre;i++)
         {
-            $('#'+i).click();
+            if(!($('#' + i).is(":checked")))
+            {
+                if(totalcheck==0)
+                {
+                    for(var j =0;j<lengthre;j++)
+                    {
+                        $('#'+j).click();
+                    }
+                    break
+                }
+                else {
+                    $('#'+i).click();
+                }
+            }
+            else
+            {
+                if(totalcheck==lengthre)
+                {
+                    if(i==(lengthre-1))
+                    {
+                        console.log(i)
+                    }
+                    else
+                    {
+                        for(var j =0;j<lengthre;j++)
+                        {
+                            $('#'+j).click();
+                        }
+                    }
+                    break
+                }
+                else {
+                    continue
+                }
+            }
+
         }
     }
     function LoadData()
@@ -189,6 +224,10 @@
             type: "GET",
             url: "http://localhost:8082/JSP_servlet_war_exploded/loadcart", //Tên servlet
             success:function (result){
+                totalcheck=0;
+                Checkbuy=0;
+                Total1=0;
+                document.getElementById("btnbuy").disabled = true;
                 var row=document.getElementById("Row1")
                 row.innerHTML="";
                 var htmlstring="";
@@ -196,7 +235,7 @@
                 for(let item in result)
                 {
                 htmlstring+=`<tr>
-                            <td style="padding-top: 58px;"><input id="`+item+`" type="checkbox" onchange="AddChose('`+result[item].ID+`',`+result[item].Quantity+`,`+item+`,`+(result[item].Price*result[item].Quantity)+`)"></td>
+                            <td style="padding-top: 58px;"><input id="`+item+`" type="checkbox" onchange="AddChose('`+result[item].ID+`',`+result[item].Quantity+`,`+item+`,`+((result[item].Price-((result[item].Price*result[item].Sale)/100))*result[item].Quantity)+`)"></td>
                             <td scope="row">
                                 <img src="Image/`+result[item].Photo+`"
                                      alt="" class="img-fluid" style="width:91px;height:110px;"/>
@@ -206,11 +245,11 @@
                                     <strong>`+result[item].Name+`</strong>
                                 </h5>
                             </td>
-                            <td style="padding-top: 58px;">`+result[item].Price+` đ`+`</td>
+                            <td style="padding-top: 58px;">`+(result[item].Price-((result[item].Price*result[item].Sale)/100)).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</td>
                             <td class="center-on-small-only" style="padding-top: 55px;">
                                 <input type="number" style="width:50px" value="`+result[item].Quantity+`" id="Quantitys" onchange="Update('`+result[item].ID+`',`+result[item].QuantityInStock+`,`+result[item].Quantity+`)">
                             </td>
-                            <td style="padding-top: 58px;">`+(result[item].Price*result[item].Quantity)+`</td>
+                            <td style="padding-top: 58px;">`+((result[item].Price-((result[item].Price*result[item].Sale)/100))*result[item].Quantity).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</td>
                             <td style="padding-top: 58px;">
                                 <a  class="text-danger mr-2" onclick="Delete('`+result[item].ID+`')">
                                     <i class="far fa-trash-alt"></i>
@@ -241,7 +280,7 @@
             totalcheck++
             var row=document.getElementById("row2")
             row.innerHTML=null
-            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
+            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+'</strong></h2>'
             if(Checkbuy==0)
             {
                 document.getElementById("btnbuy").disabled = true;
@@ -268,7 +307,7 @@
             totalcheck--
             var row=document.getElementById("row2")
             row.innerHTML=null
-            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1+' đ</strong></h2>'
+            row.innerHTML='<h2 style="padding-left: 20px"><strong>Tổng tiền : '+Total1.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+'</strong></h2>'
             if(Checkbuy==0)
             {
                 document.getElementById("btnbuy").disabled = true;

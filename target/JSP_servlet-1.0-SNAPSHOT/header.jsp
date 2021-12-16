@@ -89,7 +89,7 @@
     <header class="header">
     <div class="grid">
         <nav class="header__navbar">
-            <a class="header-nav__logo" href="#">
+            <a class="header-nav__logo" href="${pageContext.request.contextPath}">
                 <img class="header-nav__logo-img" src="assets/img/logo.jpg" alt="PK logo">
                 <p class="header-nav__logo-name">STORE</p>
             </a>
@@ -114,21 +114,43 @@
                 </a>
             </div>
             <%} else {%>
+                <% if(loginedUser1.getRole().equals("Admin")){%>
+            <div class="header-nav__list">
+                <a type="button" href="${pageContext.request.contextPath}/admin" class="btn btn--mod me-3">
+                    <i class="material-icons" style=" vertical-align: middle;">manage_accounts</i>
+                    ADMIN
+                </a>
+                <a type="button" href="${pageContext.request.contextPath}/cart" class="btn btn--mod me-3">
+                    <i class="material-icons" style=" vertical-align: middle;">shopping_cart</i>
+                    GIỎ HÀNG
+                </a>
+                <div class="dropdown">
+                    <button class="btn btn--mod "><i class="material-icons" style=" vertical-align: middle;">account_circle</i>TÀI KHOẢN</button>
+                    <div class="dropdown-content">
+                        <a type="button" class="btn " style="text-align: left" href="${pageContext.request.contextPath}/infoaccount">Thông tin tài khoản </a>
+                        <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/history">Lịch sử mua hàng </a>
+                        <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/logout">Đăng xuất </a>
+                        <a type="button" class="btn " style="text-align: left"  href="#"></a>
+                    </div>
+                </div>
+            </div>
+                <%} else {%>
             <div class="header-nav__list">
                 <a type="button" href="${pageContext.request.contextPath}/cart" class="btn btn--mod me-3">
                     <i class="material-icons" style=" vertical-align: middle;">shopping_cart</i>
                     GIỎ HÀNG
                 </a>
-                    <div class="dropdown">
-                        <button class="btn btn--mod "><i class="material-icons" style=" vertical-align: middle;">account_circle</i>TÀI KHOẢN</button>
-                        <div class="dropdown-content">
-                            <a type="button" class="btn " style="text-align: left" href="${pageContext.request.contextPath}/infoadmin">Thông tin tài khoản </a>
-                            <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/history">Lịch sử mua hàng </a>
-                            <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/logout">Đăng xuất </a>
-                            <a type="button" class="btn " style="text-align: left"  href="#"></a>
-                        </div>
+                <div class="dropdown">
+                    <button class="btn btn--mod "><i class="material-icons" style=" vertical-align: middle;">account_circle</i>TÀI KHOẢN</button>
+                    <div class="dropdown-content">
+                        <a type="button" class="btn " style="text-align: left" href="${pageContext.request.contextPath}/infoaccount">Thông tin tài khoản </a>
+                        <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/history">Lịch sử mua hàng </a>
+                        <a type="button" class="btn " style="text-align: left"  href="${pageContext.request.contextPath}/logout">Đăng xuất </a>
+                        <a type="button" class="btn " style="text-align: left"  href="#"></a>
                     </div>
+                </div>
             </div>
+                <%}%>
             <%}%>
 
 
@@ -137,7 +159,7 @@
     <nav class="header__container">
         <ul class="header-container__list grid grid__row">
             <li class="header-container__item">
-                <a href="#" class="header-container__link">
+                <a href="${pageContext.request.contextPath}" class="header-container__link">
                     PK STORE
                 </a>
             </li>
@@ -147,35 +169,32 @@
                     <ul class="container-dropdown__list">
                         <li class="container-dropdown__item container-dropdown__title">THƯƠNG HIỆU</li>
                         <hr class="line">
-                        <li class="container-dropdown__item"> <a href="#">Rolex</a></li>
-                        <li class="container-dropdown__item"><a href="#">Omega</a></li>
-                        <li class="container-dropdown__item"><a href="#">Hublot</a></li>
-                        <li class="container-dropdown__item"><a href="#">Swatch</a></li>
-                        <li class="container-dropdown__item"><a href="#">Roamer</a></li>
+                        <li class="container-dropdown__item"> <a href="${pageContext.request.contextPath}/productlist?id=1">Rolex</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=2">Omega</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=3">Hublot</a></li>
                     </ul>
                     <ul class="container-dropdown__list">
                         <li class="container-dropdown__item container-dropdown__title">MỨC GIÁ</li>
                         <hr class="line">
-                        <li class="container-dropdown__item"> <a href="#">2 - 5 Triệu</a></li>
-                        <li class="container-dropdown__item"><a href="#">5 - 10 Triệu</a></li>
-                        <li class="container-dropdown__item"><a href="#">10 - 20 Triệu</a></li>
-                        <li class="container-dropdown__item"><a href="#">20 - 50 Triệu</a></li>
-                        <li class="container-dropdown__item"><a href="#">50 - 100 Triệu</a></li>
+                        <li class="container-dropdown__item"> <a href="${pageContext.request.contextPath}/productlist?id=4">5 - 10 Triệu</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=5">10 - 20 Triệu</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=6">20 - 50 Triệu</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=7">50 - 100 Triệu</a></li>
                     </ul>
                     <ul class="container-dropdown__list">
                         <li class="container-dropdown__item container-dropdown__title">BỘ MÁY</li>
                         <hr class="line">
-                        <li class="container-dropdown__item"> <a href="#">Máy pin</a></li>
-                        <li class="container-dropdown__item"><a href="#">Máy quang</a></li>
-                        <li class="container-dropdown__item"><a href="#">Máy cơ</a></li>
+                        <li class="container-dropdown__item"> <a href="${pageContext.request.contextPath}/productlist?id=8">Máy pin</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=9">Máy quang</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=10">Máy cơ</a></li>
                     </ul>
                     <ul class="container-dropdown__list">
                         <li class="container-dropdown__item container-dropdown__title">LOẠI DÂY</li>
                         <hr class="line">
-                        <li class="container-dropdown__item"> <a href="#">Dây vải</a></li>
-                        <li class="container-dropdown__item"><a href="#">Dây nhựa</a></li>
-                        <li class="container-dropdown__item"><a href="#">Dây da</a></li>
-                        <li class="container-dropdown__item"><a href="#">Dây kim loại</a></li>
+                        <li class="container-dropdown__item"> <a href="${pageContext.request.contextPath}/productlist?id=11">Dây vải</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=12">Dây nhựa</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=13">Dây da</a></li>
+                        <li class="container-dropdown__item"><a href="${pageContext.request.contextPath}/productlist?id=14">Dây kim loại</a></li>
                     </ul>
                 </div>
             </li>

@@ -35,17 +35,17 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="#">
+                        <a href="">
                             <img src="assets/img/slider1.jpg" class="d-block w-100 img-responsive" alt="#">
                         </a>
                     </div>
                     <div class="carousel-item">
-                        <a href="#">
+                        <a href="">
                             <img src="assets/img/slider2.jpg" class="d-block w-100 img-responsive" alt="#">
                         </a>
                     </div>
                     <div class="carousel-item">
-                        <a href="#">
+                        <a href="">
                             <img src="assets/img/slider4.jpg" class="d-block w-100 img-responsive" alt="#">
                         </a>
                     </div>
@@ -67,10 +67,10 @@
             <div class="home-products__header">
                 <span class="header-title">Sản phẩm nổi bật nhất</span>
                 <div class="home-products__header-list">
-                    <span class="badge rounded-pill home-products__header-item"><a href="#">Rolex</a></span>
-                    <span class="badge rounded-pill home-products__header-item"><a href="#">Hublot</a></span>
-                    <span class="badge rounded-pill home-products__header-item"><a href="#">Omega</a></span>
-                    <span class="badge rounded-pill home-products__header-item"><a href="#">Xem tất cả...</a></span>
+                    <span class="badge rounded-pill home-products__header-item"><a href="${pageContext.request.contextPath}/productlist?id=1">Rolex</a></span>
+                    <span class="badge rounded-pill home-products__header-item"><a href="${pageContext.request.contextPath}/productlist?id=2">Hublot</a></span>
+                    <span class="badge rounded-pill home-products__header-item"><a href="${pageContext.request.contextPath}/productlist?id=3">Omega</a></span>
+                    <span class="badge rounded-pill home-products__header-item"><a href="${pageContext.request.contextPath}/productlist">Xem tất cả...</a></span>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
                 </figure>
 
                 <div class="display__more mt-5 mb-5">
-                    <a href="#">
+                    <a href="">
                         <i class="material-icons search__btn-icon">keyboard_arrow_right</i>
                         <span>XEM TẤT CẢ</span>
                     </a>
@@ -222,7 +222,8 @@
         window.location="http://localhost:8082/JSP_servlet_war_exploded/productlist?id='"+da+"'"
     }
 </script>
-<script src="operation/home.js"></script>
+
+
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"
@@ -230,6 +231,53 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
 <script src="assets/js/lib/bootstrap.min.js"></script>
+<script>
+    //Load data lên trang home bằng ajax
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "loadhome", //Tên servlet
+            success:function (result){
+                renderProduct(result);
+            }
+        })
+    })
+    //render dữ liệu lấy từ ajax lên html
+    function renderProduct(result)
+    {
+        var i=0
+        var htmlString=``;
+        for(let item in result)
+        {
+
+            if(i%4==0){htmlString+=`<div class="row p-5\">`}
+            /////////////////////////////////////////////////////
+            htmlString+=`<div class="card col border-0 mx-2 overflow-hidden Col-md-3" style="width: 18rem;">
+                                <div class="discount-tag">-`+result[item].Sale+`% </div>
+                                <a href="product?id=`+result[item].ID+`"><img src="Image/`+result[item].Image+`" class="card-img-top overflow-hidden"
+                                        alt="..."></a>
+                                <div class="card-body text-center">
+                                    <h2 class="card-title">`+result[item].Name+`</h2>
+                                    <h4 class="card-title">`+result[item].ID+`</h4>
+                                    <p class="card-text card-text__info">40.5mm - Kính cứng</p>
+                                    <p class="card-prize-old">`+(result[item].Price).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</p>
+                                    <p class="card-prize-new">`+(result[item].Price-((result[item].Price*result[item].Sale)/100)).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</p>
+                                    <a href="product?id=`+result[item].ID+`" class="btn btn-danger btn-buynow">MUA NGAY</a>
+                                </div>
+                            </div>`
+            ////////////////////////////////////////////////////
+            i++
+            if(i%4==0){htmlString+=`</div>`}
+        }
+        htmlString+=`<div class="display__more mt-5 mb-5">
+                        <a href="http://localhost:8082/JSP_servlet_war_exploded/productlist">
+                            <i class="material-icons search__btn-icon">keyboard_arrow_right</i>
+                            <span>XEM TẤT CẢ SẢN PHẨM</span>
+                        </a>
+                    </div>`;
+        $('#row').html(htmlString);
+    }
+</script>
 </body>
 
 </html>

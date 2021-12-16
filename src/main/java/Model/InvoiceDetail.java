@@ -8,6 +8,7 @@ public class InvoiceDetail
     private String Name;
     private String Photo;
     private int Total;
+    private int Sale;
 
     public InvoiceDetail() {}
 

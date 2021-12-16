@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Loại đồng hồ</title>
+  <title>Lịch sử mua hàng</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -54,7 +54,7 @@
         <a class="nav-link">Lịch sử mua hàng</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="${pageContext.request.contextPath}/infoadmin" class="nav-link">Thông tài khoản</a>
+        <a href="${pageContext.request.contextPath}/infoaccount" class="nav-link">Thông tài khoản</a>
       </li>
     </ul>
     <div class="dropdown navbar-nav ml-auto" >
@@ -71,7 +71,7 @@
           Lịch sử mua hàng
         </a>
         </hr>
-        <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/infoadmin">
+        <a style=" padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/infoaccount">
           <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
           Thông tin tài khoản
         </a>
@@ -185,7 +185,7 @@
                 ` + result[item].Status + `
               </td>
               <td style="padding-top: 35px;">Giao hàng ` + result[item].MethodShip + `</td>
-              <td style="padding-top: 35px;">` + result[item].Total + `</td>`
+              <td style="padding-top: 35px;">` + result[item].Total.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}) + `</td>`
           if(result[item].CheckS==false)
           {
             htmlstring+=`<td style="padding-top: 35px;"><a onclick="Delete('` + result[item].ID + `','` + result[item].Invoice_ID + `')"  class="text-danger mr-2" >

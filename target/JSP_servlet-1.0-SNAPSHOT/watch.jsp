@@ -84,7 +84,7 @@
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -143,6 +143,7 @@
                                         <th>Loại dây</th>
                                         <th>Giá</th>
                                         <th>Số lượng tồn</th>
+                                        <th>Sale</th>
                                         <th>Hành động</th>
                                     </tr>
                                     </thead>
@@ -189,12 +190,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh 1</label>
-                                    <input type="file" class="form-control" id="Photo1" placeholder="Tên đồng hồ">
+                                    <label>Sale</label>
+                                    <input type="number" class="form-control" id="Sale" placeholder="Phần trăm sale">
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh 4</label>
-                                    <input type="file" class="form-control" id="Photo4" placeholder="Tên đồng hồ">
+                                    <label>Ảnh 3</label>
+                                    <input type="file" class="form-control" id="Photo3" placeholder="Tên đồng hồ">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -210,12 +211,12 @@
                                     <input type="number" class="form-control" id="Piece" placeholder="Giá">
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh 2</label>
-                                    <input type="file" class="form-control" id="Photo2" placeholder="Tên đồng hồ">
+                                    <label>Ảnh 1</label>
+                                    <input type="file" class="form-control" id="Photo1" placeholder="Tên đồng hồ">
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh 5</label>
-                                    <input type="file" class="form-control" id="Photo5" placeholder="Tên đồng hồ">
+                                    <label>Ảnh 4</label>
+                                    <input type="file" class="form-control" id="Photo4" placeholder="Tên đồng hồ">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -235,8 +236,12 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
-                                    <label>Ảnh 3</label>
-                                    <input type="file" class="form-control" id="Photo3" placeholder="Tên đồng hồ">
+                                    <label>Ảnh 2</label>
+                                    <input type="file" class="form-control" id="Photo2" placeholder="Tên đồng hồ">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ảnh 5</label>
+                                    <input type="file" class="form-control" id="Photo5" placeholder="Tên đồng hồ">
                                 </div>
                             </div>
                         </div>
@@ -293,6 +298,10 @@
                                         <option value="Dây Kim Loại">Dây Kim Loại</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Sale</label>
+                                    <input type="number" class="form-control" id="Sale1" placeholder="Phần trăm sale">
+                                </div>
                                 <!-- /.form-group -->
                             </div>
                             <div class="col-md-4">
@@ -306,6 +315,7 @@
                                     <label>Giá</label>
                                     <input type="number" class="form-control" id="Piece1" placeholder="Giá">
                                 </div>
+
                                 <!-- /.form-group -->
                             </div>
                         </div>
@@ -436,6 +446,7 @@
         var Wire=$("#Wire1").find(":selected").val();
         var Piece=$("#Piece1").val()
         var QuantityInStock=$("#QuantityInStock1").val()
+        var Sale=$("#Sale1").val()
         if(Name!=''&&Piece!=''&&QuantityInStock!='') {
             $.ajax({
                 type: "POST", //với servlet thì sẽ đi vào method doPost
@@ -448,7 +459,8 @@
                     Machine: Machine,
                     Wire: Wire,
                     Piece: Piece,
-                    QuantityInStock: QuantityInStock
+                    QuantityInStock: QuantityInStock,
+                    Sale:Sale
                 },
                 success: function () {
                     $.ajax({
@@ -481,6 +493,7 @@
         var Wire=$("#Wire").find(":selected").val();
         var Piece=$("#Piece").val()
         var QuantityInStock=$("#QuantityInStock").val()
+        var Sale=$("#Sale").val()
         ////////////////////////////////////////////////////////
         var dt=new FormData();
         var I1=document.getElementById("Photo1").files[0];
@@ -500,6 +513,7 @@
         dt.append('Machine',Machine);
         dt.append('Wire',Wire);
         dt.append('Piece',Piece);
+        dt.append('Sale',Sale);
         dt.append('QuantityInStock',QuantityInStock);
         ///////////////////////////////////////////////////////
         if(Name!=''&&Piece!=''&&QuantityInStock!='') {
@@ -578,6 +592,7 @@
                 document.getElementById("Machine1").value=result.MachineType;
                 document.getElementById("Wire1").value=result.WireType;
                 document.getElementById("QuantityInStock1").value=result.QuantityInStock;
+                document.getElementById("Sale1").value=result.Sale;
             }
         })
     }

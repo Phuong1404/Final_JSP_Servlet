@@ -14,7 +14,7 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>Controller.loginServlet</servlet-class>
+        <servlet-class>Controller.Home.loginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>loadhome</servlet-name>
-        <servlet-class>Controller.loadhome</servlet-class>
+        <servlet-class>Controller.Home.loadhome</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadhome</servlet-name>
@@ -157,12 +157,12 @@
         <url-pattern>/usersearch</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>infoadmin</servlet-name>
+        <servlet-name>infoaccount</servlet-name>
         <servlet-class>Controller.Admin.Information.changeInfomationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>infoadmin</servlet-name>
-        <url-pattern>/infoadmin</url-pattern>
+        <servlet-name>infoaccount</servlet-name>
+        <url-pattern>/infoaccount</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>loadinfoadmin</servlet-name>
@@ -182,7 +182,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>productlist</servlet-name>
-        <servlet-class>Controller.AllProductServlet</servlet-class>
+        <servlet-class>Controller.Product.AllProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productlist</servlet-name>
@@ -190,7 +190,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>productlistload</servlet-name>
-        <servlet-class>Controller.loadproductlist</servlet-class>
+        <servlet-class>Controller.Product.loadproductlist</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productlistload</servlet-name>
@@ -198,7 +198,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>product</servlet-name>
-        <servlet-class>Controller.ProductDetailServlet</servlet-class>
+        <servlet-class>Controller.Product.ProductDetailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>product</servlet-name>
@@ -206,7 +206,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>signup</servlet-name>
-        <servlet-class>Controller.signupServlet</servlet-class>
+        <servlet-class>Controller.Home.signupServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>signup</servlet-name>
@@ -223,7 +223,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>cart</servlet-name>
-        <servlet-class>Controller.cartServlet</servlet-class>
+        <servlet-class>Controller.Cart.cartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cart</servlet-name>
@@ -231,7 +231,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>loadcart</servlet-name>
-        <servlet-class>Controller.cartload</servlet-class>
+        <servlet-class>Controller.Cart.cartload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadcart</servlet-name>
@@ -239,7 +239,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>editcart</servlet-name>
-        <servlet-class>Controller.EditCart</servlet-class>
+        <servlet-class>Controller.Cart.EditCart</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>editcart</servlet-name>
@@ -247,7 +247,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>checkout</servlet-name>
-        <servlet-class>Controller.checkOutServlet</servlet-class>
+        <servlet-class>Controller.CheckOut.checkOutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>checkout</servlet-name>
@@ -255,7 +255,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>loadcheckout</servlet-name>
-        <servlet-class>Controller.loadcheckout</servlet-class>
+        <servlet-class>Controller.CheckOut.loadcheckout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadcheckout</servlet-name>
@@ -263,7 +263,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>history</servlet-name>
-        <servlet-class>Controller.History</servlet-class>
+        <servlet-class>Controller.History.History</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>history</servlet-name>
@@ -271,7 +271,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>loadhistory</servlet-name>
-        <servlet-class>Controller.loadHistory</servlet-class>
+        <servlet-class>Controller.History.loadHistory</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadhistory</servlet-name>
@@ -279,7 +279,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>invoicedetail</servlet-name>
-        <servlet-class>Controller.InvoiceDetail1</servlet-class>
+        <servlet-class>Controller.Product.InvoiceDetail1</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>invoicedetail</servlet-name>
@@ -287,7 +287,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>accept</servlet-name>
-        <servlet-class>Controller.AcceptTranport</servlet-class>
+        <servlet-class>Controller.Admin.Accept.AcceptTranport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>accept</servlet-name>
@@ -295,7 +295,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>loadaccept</servlet-name>
-        <servlet-class>Controller.loadTransport</servlet-class>
+        <servlet-class>Controller.History.loadTransport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadaccept</servlet-name>
@@ -303,10 +303,18 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>Controller.logoutServlet</servlet-class>
+        <servlet-class>Controller.Home.logoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>delacc</servlet-name>
+        <servlet-class>Controller.Admin.Accept.DelTranport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delacc</servlet-name>
+        <url-pattern>/delaccloa</url-pattern>
     </servlet-mapping>
 </web-app>

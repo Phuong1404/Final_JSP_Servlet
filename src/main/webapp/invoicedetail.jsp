@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 11/22/2021
@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+<% DecimalFormat formatter = new DecimalFormat("###,###,###"); %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Loại đồng hồ</title>
+    <title>Chi tiết đơn hàng</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -55,7 +56,7 @@
                 <a href="${pageContext.request.contextPath}/history" class="nav-link">Lịch sử mua hàng</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="${pageContext.request.contextPath}/infoadmin" class="nav-link">Thông tài khoản</a>
+                <a href="${pageContext.request.contextPath}/infoaccount" class="nav-link">Thông tài khoản</a>
             </li>
         </ul>
         <div class="dropdown navbar-nav ml-auto" >
@@ -72,7 +73,7 @@
                     Lịch sử mua hàng
                 </a>
                 </hr>
-                <a style=" padding-left: 5px;" class="nav-link" >
+                <a style=" padding-left: 5px;" href="${pageContext.request.contextPath}/infoaccount" class="nav-link" >
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Thông tin tài khoản
                 </a>
@@ -139,7 +140,7 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Tổng tiền (VNĐ)</span>
-                                    <strong>${info.getTotal()}</strong>
+                                    <strong>${info.getTotal()} ₫</strong>
                                 </li>
                             </ul>
                         </div>
@@ -173,7 +174,7 @@
                                             </h5>
                                         </td>
                                         <td style="padding-top: 45px;">${item.getQuantity()}</td>
-                                        <td style="padding-top: 45px;">${item.getTotal()}</td>
+                                        <td style="padding-top: 45px;">${item.getTotal()} ₫</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

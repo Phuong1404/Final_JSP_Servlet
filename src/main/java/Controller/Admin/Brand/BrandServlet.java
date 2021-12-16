@@ -1,6 +1,8 @@
 package Controller.Admin.Brand;
 
 import DAO.Implement.TypeOfWatchDAOImpl;
+import DAO.MyUtils;
+import Model.Account;
 import Model.TypeOfWatch;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpSession;
 
 import static java.lang.System.out;
 
@@ -25,6 +28,21 @@ public class BrandServlet extends HttpServlet
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        Account loginedUser= MyUtils.getLoginedUser(session);
+        if(loginedUser==null)
+        {
+            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/brand");
+            response.sendRedirect(request.getContextPath()+"/login");
+            return;
+        }
+        else{
+            if(!loginedUser.getRole().equals("Admin"))
+            {
+                response.sendRedirect(request.getContextPath());
+                return;
+            }
+        }
         RequestDispatcher dispatcher=this.getServletContext().getRequestDispatcher("/brand.jsp");
         dispatcher.forward(request, response);
     }

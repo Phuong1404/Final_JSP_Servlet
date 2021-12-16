@@ -1,6 +1,7 @@
 <%@ page import="DAO.MyUtils" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="Model.Watch" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -8,6 +9,7 @@
 <% HttpSession session1=request.getSession(); %>
 <% MyUtils.dellink(session1); %>
 <% Watch w= (Watch) request.getAttribute("watch"); %>
+<% DecimalFormat formatter = new DecimalFormat("###,###,###"); %>
 <% MyUtils.storelink(session1,"http://localhost:8082/JSP_servlet_war_exploded/product?id="+w.getID()); %>
 <head>
     <meta charset="UTF-8">
@@ -28,6 +30,7 @@
           integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
           crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <title>${watch.getName()}</title>
 </head>
 
 <body>
@@ -45,9 +48,9 @@
             </div>
             <div class="col-6 product__info">
                     <div class="product-info__name">${watch.getName()}</div>
-                    <span class="card-prize-old">${(watch.getPrice())*2}₫</span>
-                    <span class="product-info__discount">-50%</span>
-                    <div class="card-prize-new">${watch.getPrice()}₫</div>
+                    <span class="card-prize-old"><%= formatter.format(w.getPrice()) %> ₫</span>
+                    <span class="product-info__discount">-${(watch.getSale())}%</span>
+                    <div class="card-prize-new"><%= formatter.format(w.getPrice()-((w.getPrice()*w.getSale())/100)) %> ₫</div>
 
                 <div class="product-info__promote">
                     <div class="promote__name">

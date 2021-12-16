@@ -68,7 +68,7 @@ public class InvoiceDeailDAOImpl implements InvoiceDetailDAO
     @Override
     public List<InvoiceDetail> getList(String Invoice_Id) throws SQLException, ClassNotFoundException {
         Connection conn =DBConnection.getConnection();
-        String sql="Select Invoice_ID,PhotosOfWatch.Watch_ID,Quantity,Name,Photos,(Quantity*Price)AS Total from InvoiceDetail,dbo.Watch,dbo.PhotosOfWatch WHERE InvoiceDetail.Watch_ID=ID AND PhotosOfWatch.Watch_ID=ID AND SUBSTRING(Photos,6,1)=1 AND Invoice_ID='"+Invoice_Id+"'";
+        String sql="Select Invoice_ID,PhotosOfWatch.Watch_ID,Quantity,Name,Photos,((Quantity*Price)-(((Quantity*Price)*Sale)/100))AS Total from InvoiceDetail,dbo.Watch,dbo.PhotosOfWatch WHERE InvoiceDetail.Watch_ID=ID AND PhotosOfWatch.Watch_ID=ID AND SUBSTRING(Photos,6,1)=1 AND Invoice_ID='"+Invoice_Id+"'";
         List<InvoiceDetail>list = new ArrayList<InvoiceDetail>();
         try
         {

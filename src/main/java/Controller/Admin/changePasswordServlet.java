@@ -26,6 +26,7 @@ public class changePasswordServlet extends HttpServlet
         Account loginedUser= MyUtils.getLoginedUser(session);
         if(loginedUser==null)
         {
+            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/changepass");
             response.sendRedirect(request.getContextPath()+"/login");
             return;
         }

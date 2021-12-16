@@ -59,7 +59,8 @@ public class upwatch extends HttpServlet
         String Brand =request.getParameter("Brand");
         String Piece =request.getParameter("Piece");
         String QuantityInStock =request.getParameter("QuantityInStock");
-        Watch watch=new Watch(id,name,Integer.parseInt(Brand),Machine,Wire,Integer.parseInt(Piece),Integer.parseInt(QuantityInStock));
+        String Sale =request.getParameter("Sale");
+        Watch watch=new Watch(id,name,Integer.parseInt(Brand),Machine,Wire,Integer.parseInt(Piece),Integer.parseInt(QuantityInStock),Integer.parseInt(Sale));
         try {
             t.updateWatch(watch);
         } catch (SQLException e) {

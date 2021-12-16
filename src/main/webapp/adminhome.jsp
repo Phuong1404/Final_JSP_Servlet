@@ -90,7 +90,7 @@
                     <i style="display:inline; padding-left: 28px;"class="fas fa-user-lock"></i>
                     Xác nhận đơn hàng
                 </a>
-                <a style="padding-left: 5px;" class="nav-link" href="#">
+                <a style="padding-left: 5px;" class="nav-link" href="${pageContext.request.contextPath}/logout">
                     <i style="display:inline; padding-left: 28px;" class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </a>
@@ -138,10 +138,6 @@
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Thống kê</a>
-                                    </li>
-                                    &nbsp;
-                                    <li class="nav-item">
-                                        <a class="nav-link active">Xuất báo cáo</a>
                                     </li>
                                 </ul>
                             </div>

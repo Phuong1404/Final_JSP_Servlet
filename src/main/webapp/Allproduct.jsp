@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <title>Tất cả sản phẩm</title>
     <style>
         .dropdown-content {
             display: none;
@@ -312,16 +313,16 @@
 
                 if(i%4==0){htmlString+=`<div class="row p-5\">`}
                 /////////////////////////////////////////////////////
-                htmlString+=`<div class="card col border-0 mx-2 overflow-hidden col-md-3" style="width: 18rem;">
-                                <div class="discount-tag">-50%</div>
+                htmlString+=`<div class="card col border-0 mx-2 overflow-hidden col-md-3" style="width: 19rem;">
+                                <div class="discount-tag">-`+result[item].Sale+`% </div>
                                 <a href="product?id=`+result[item].ID+`" ><img src="Image/`+result[item].Image+`" class="card-img-top overflow-hidden"
                                         alt="..."></a>
                                 <div class="card-body text-center">
-                                    <h2 class="card-title">FERRARI</h2>
-                                    <h4 class="card-title">AG0003S10B</h4>
+                                    <h2 class="card-title">`+result[item].Name+`</h2>
+                                    <h4 class="card-title">`+result[item].ID+`</h4>
                                     <p class="card-text card-text__info">Orient Nam - 40.5mm - Kính cứng</p>
-                                    <p class="card-prize-old">2.000.000₫</p>
-                                    <p class="card-prize-new">1.000.000₫</p>
+                                    <p class="card-prize-old">`+(result[item].Price).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</p>
+                                    <p class="card-prize-new">`+(result[item].Price-((result[item].Price*result[item].Sale)/100)).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</p>
                                     <a href="product?id=`+result[item].ID+`"class="btn btn-danger btn-buynow">MUA NGAY</a>
                                 </div>
                             </div>`

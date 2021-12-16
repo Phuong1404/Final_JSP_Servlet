@@ -29,14 +29,19 @@ public class changeInfomationServlet extends HttpServlet
         Account loginedUser= MyUtils.getLoginedUser(session);
         if(loginedUser==null)
         {
-            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/infoadmin");
+            MyUtils.storelink(session,"http://localhost:8082/JSP_servlet_war_exploded/infoaccount");
             response.sendRedirect(request.getContextPath()+"/login");
             return;
         }
-        else {
+        else{
+            if(!loginedUser.getRole().equals("Admin"))
+            {
+                response.sendRedirect(request.getContextPath());
+                return;
+            }
+        }
                 RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/infoadmin.jsp");
                 dispatcher.forward(request, response);
-        }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDAOImpl a=new UserDAOImpl();
