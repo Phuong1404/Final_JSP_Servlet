@@ -219,7 +219,7 @@
     {
         var da=document.getElementById("search2").value
 
-        window.location="http://localhost:8082/JSP_servlet_war_exploded/productlist?id='"+da+"'"
+        window.location="http://localhost:8082/JSP_servlet_war_exploded/productlist?id='"+da+".'"
     }
 </script>
 

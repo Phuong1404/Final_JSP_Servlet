@@ -773,6 +773,7 @@ public class WatchDAOImpl implements WatchDAO
     @Override
     public List<Watch> getList15(String data) throws SQLException, ClassNotFoundException {
         //search Name
+        data=data.replace(data.substring(data.length()-1), "");
         Connection conn =DBConnection.getConnection();
         String sql="{call sp_Search(?)}";
         List<Watch>list = new ArrayList<Watch>();

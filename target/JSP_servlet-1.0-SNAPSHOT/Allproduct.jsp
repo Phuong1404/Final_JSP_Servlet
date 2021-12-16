@@ -439,7 +439,7 @@
         if(dt!='') {
             $.ajax({
                 type: "GET",
-                url: "loadproductlist?id=" + dt, //Tên servlet
+                url: "loadproductlist?id=" + dt+".", //Tên servlet
                 success: function (result) {
                     data = result;
                     currentPage = 1;
@@ -457,6 +457,11 @@
                         row.innerHTML = null;
                         row.innerHTML=`<h1 style="margin-left: 300px; margin-top: 70px">Không có sản phẩm nào phù hợp</h1>`
                     }
+                    for(var it=1;it<=14;it++)
+                    {
+                        document.getElementById("ra"+it).checked=false
+                    }
+
                 }
             })
         }
