@@ -247,7 +247,7 @@
                             </td>
                             <td style="padding-top: 58px;">`+(result[item].Price-((result[item].Price*result[item].Sale)/100)).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</td>
                             <td class="center-on-small-only" style="padding-top: 55px;">
-                                <input type="number" style="width:50px" value="`+result[item].Quantity+`" id="Quantitys" onchange="Update('`+result[item].ID+`',`+result[item].QuantityInStock+`,`+result[item].Quantity+`)">
+                                <input type="number" style="width:50px" value="`+result[item].Quantity+`" id="Quantitys`+item+`" onchange="Update('`+result[item].ID+`',`+result[item].QuantityInStock+`,`+result[item].Quantity+`,`+item+`)">
                             </td>
                             <td style="padding-top: 58px;">`+((result[item].Price-((result[item].Price*result[item].Sale)/100))*result[item].Quantity).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})+`</td>
                             <td style="padding-top: 58px;">
@@ -336,19 +336,21 @@
                     }
                     })
     }
-    function Update(ID,stock,Quan)
+    function Update(ID,stock,Quan,item)
     {
-        var a=document.getElementById('Quantitys').value
+        var b='Quantitys'+item
+        console.log(b)
+        var a=document.getElementById(b).value
         if(a>10)
         {
             alert("Số lượng tối đa có thể mua với mỗi sản phẩm là 10 !")
-            document.getElementById('Quantitys').value=Quan
+            document.getElementById(b).value=Quan
         }
         else{
             if(a>stock)
             {
                 alert("Số lượng trong kho không đủ để thêm vào giỏ hàng !")
-                document.getElementById('Quantitys').value=Quan
+                document.getElementById(b).value=Quan
             }
             else {
                 $.ajax({
